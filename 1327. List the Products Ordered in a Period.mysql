@@ -1,0 +1,18 @@
+/*
+Intuition: 
+Join table with aggregated filter
+Approach: 
+1. Observe tables 
+2. Define outcome => product_name and total unit order in 2020 Feb
+3. Join tables on the product_id
+4. Use where to select all result in 2020-02
+5. Group by product_name and use having for filtering the total unit per prodict
+*/
+
+select product_name, sum(unit) as 'unit'
+from Products p
+join Orders o
+on p.product_id = o.product_id
+where DATE_FORMAT(order_date, '%Y-%m') = '2020-02'
+group by product_name
+having sum(unit) >= 100
