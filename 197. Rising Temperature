@@ -1,0 +1,5 @@
+select t.id
+from Weather t 
+cross join Weather y
+where t.temperature > y.temperature
+and datediff(t.recordDate, y.recordDate) = 1 
